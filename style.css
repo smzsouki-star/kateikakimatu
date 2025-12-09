@@ -1,7 +1,7 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
+    /* 背景色をクリームイエローに変更 */
+    background-color: #FFFDD0; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,116 +12,175 @@ body {
 .container {
     background-color: #ffffff;
     padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     width: 90%;
     max-width: 600px;
-    text-align: center;
+    /* 枠線をゴールドイエローで強調 */
+    border: 5px solid #FFD700; 
+    transition: transform 0.3s ease;
 }
 
 h1 {
-    color: #007bff;
+    /* メインテーマカラー */
+    color: #FFD700; 
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 3px solid #FFD700;
+    padding-bottom: 10px;
+}
+
+.question-area {
     margin-bottom: 20px;
-}
-
-#quiz-container {
-    margin-top: 20px;
-}
-
-#question-box {
-    background-color: #e9ecef;
     padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #FFFFE0; /* 質問エリアを少し濃いイエローで区別 */
+}
+
+.question-counter {
     font-size: 1.1em;
-    text-align: left;
+    font-weight: bold;
+    color: #5C40CC; /* 補色で目立たせる */
+    margin-bottom: 10px;
 }
 
-#options-container button {
-    display: block;
+.question-text {
+    font-size: 1.3em;
+    color: #333333;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.options {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.option-button {
     width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border: 2px solid #ced4da;
-    border-radius: 6px;
-    background-color: #ffffff;
-    font-size: 1em;
-    cursor: pointer;
+    padding: 15px;
+    margin-bottom: 12px;
+    /* ボタンのベースカラーを薄いイエローに */
+    background-color: #FFFAAA; 
+    color: #333333;
+    border: 2px solid #FFD700; /* メインカラーで枠線 */
+    border-radius: 8px;
     text-align: left;
-    transition: background-color 0.3s, border-color 0.3s;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.2s, transform 0.1s;
 }
 
-#options-container button:hover:not(:disabled) {
-    background-color: #e2f1ff;
-    border-color: #007bff;
+.option-button:hover:not(:disabled) {
+    /* ホバー時をメインカラーで強調 */
+    background-color: #FFD700; 
+    color: #5C40CC; /* 補色でテキストにコントラスト */
+    transform: translateY(-2px);
 }
 
-/* 正誤判定後のスタイル */
+.option-button:disabled {
+    cursor: default;
+    opacity: 0.8;
+}
+
+/* 正解・不正解時のスタイル */
 .correct {
-    background-color: #28a745 !important;
-    color: white;
-    border-color: #28a745 !important;
+    /* 正解は補色で強いインパクト */
+    background-color: #5C40CC !important; 
+    color: #FFFFFF !important;
+    border-color: #FFD700 !important;
+    font-weight: bold;
 }
 
 .incorrect {
-    background-color: #dc3545 !important;
-    color: white;
-    border-color: #dc3545 !important;
+    /* 不正解は薄い補色で対比 */
+    background-color: #CCBBFF !important; 
+    color: #333333 !important;
+    border-color: #5C40CC !important;
+    text-decoration: line-through;
+    opacity: 0.7;
 }
 
-#feedback-box {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 6px;
-    text-align: left;
-    border: 1px solid #dee2e6;
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
 }
 
-#answer-result {
+#nextButton {
+    padding: 12px 25px;
+    /* 次へボタンを補色で目立たせる */
+    background-color: #5C40CC; 
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
     font-weight: bold;
-    font-size: 1.2em;
-    margin-bottom: 5px;
+    transition: background-color 0.2s;
 }
 
-.next-button, #restart-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    margin-top: 15px;
-    transition: background-color 0.3s;
+#nextButton:hover {
+    background-color: #7A5AC3; /* 少し明るく */
 }
 
-.next-button:hover, #restart-button:hover {
-    background-color: #0056b3;
-}
-
-#hint-button {
-    background-color: #ffc107;
-    color: #333;
-    border: none;
-    border-radius: 5px;
+#hintButton {
     padding: 8px 15px;
-    margin-top: 10px;
+    background-color: #FFD700; /* メインカラー */
+    color: #5C40CC; /* 補色テキスト */
+    border: 1px solid #5C40CC;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 0.9em;
-    transition: background-color 0.3s;
+    font-weight: bold;
 }
 
-#hint-button:hover {
-    background-color: #e0a800;
+#hintButton:hover {
+    background-color: #FFC000;
 }
 
-#hint-text {
-    margin-top: 5px;
-    font-style: italic;
-    color: #555;
-    font-size: 0.9em;
+#hint,
+#rationale {
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+    border-left: 5px solid #FFD700; /* メインカラーで強調 */
+    background-color: #FEFCE3;
+    color: #333333;
+    font-size: 0.95em;
+    line-height: 1.4;
 }
 
-.hidden {
-    display: none;
+#hint strong,
+#rationale strong {
+    color: #5C40CC; /* 補色 */
+}
+
+#results {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#results h2 {
+    color: #5C40CC;
+    font-size: 2em;
+}
+
+#restartButton {
+    padding: 15px 30px;
+    background-color: #FFD700;
+    color: #5C40CC;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.2s;
+}
+
+#restartButton:hover {
+    background-color: #FFC000;
 }
